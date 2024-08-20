@@ -1,0 +1,10 @@
+﻿APT34 is an Iran-nexus cluster of cyber espionage activity that has been active since at least 2014.  FireEye identified a phishing campaign conducted by APT34, an Iranian-nexus threat actor.APT34 aligns with elements of activity reported as OilRig and Greenbug, by various security researchers.
+The activities observed by Managed Defense, and described in this post, were primarily targeting the following industries:
+* Energy and Utilities
+* Government
+* Oil and GasThe Managed Defense SOC analyzed the alert and identified a malicious file named System.doc (MD5: b338baa673ac007d7af54075ea69660b), located in C:\Users\\.templates. The file System.doc is a Windows Portable Executable (PE), despite having a "doc" file extension. FireEye identified this new malware family as TONEDEAF.
+* Retracing the steps preceding exploit detection, FireEye identified that System.doc was dropped by a file named ERFT-Details.xls. Combining endpoint- and network-visibility, we were able to correlate that ERFT-Details.xls originated from the URL http://www.cam-research-ac[.]com/Documents/ERFT-Details.xls. Network evidence also showed the access of a LinkedIn message directly preceding the spreadsheet download.
+FireEye examined the original file ERFT-Details.xls, which was observed with at least two unique MD5 file hashes:
+* 96feed478c347d4b95a8224de26a1b2c
+* caf418cbf6a9c4e93e79d4714d5d3b87
+A snippet of the VBA code, provided in Figure 2, creates System.doc in the target directory from base64-encoded text upon opening.
